@@ -59,7 +59,7 @@ abstract class AbstractRequest implements RequestInterface
             }
 
             if ($key === '#') {
-                $xml->{0} = $value;
+                $xml[0] = $value;
                 return;
             }
 
