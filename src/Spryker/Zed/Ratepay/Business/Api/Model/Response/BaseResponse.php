@@ -43,7 +43,8 @@ class BaseResponse implements ResponseInterface
      */
     public function getPaymentMethod()
     {
-        return (string)$this->xmlObject->content->payment['method'];
+        $method = $this->xmlObject->content->payment['method'] ?? null;
+        return (string)$method;
     }
 
     /**
@@ -52,7 +53,7 @@ class BaseResponse implements ResponseInterface
     public function isSuccessful()
     {
         $operation = (string)$this->xmlObject->head->operation;
-        return $this->successMatrix[$operation] === $this->getResultCode();
+        return ($this->successMatrix[$operation] ?? null) === $this->getResultCode();
     }
 
     /**
@@ -60,7 +61,8 @@ class BaseResponse implements ResponseInterface
      */
     public function getStatusCode()
     {
-        return (string)$this->xmlObject->head->processing->status['code'];
+        $code = $this->xmlObject->head->processing->status['code'] ?? null;
+        return (string)$code;
     }
 
     /**
@@ -68,7 +70,8 @@ class BaseResponse implements ResponseInterface
      */
     public function getReasonCode()
     {
-        return (int)$this->xmlObject->head->processing->reason['code'];
+        $code = $this->xmlObject->head->processing->reason['code'] ?? null;
+        return (int)$code;
     }
 
     /**
@@ -76,7 +79,8 @@ class BaseResponse implements ResponseInterface
      */
     public function getResultCode()
     {
-        return (int)$this->xmlObject->head->processing->result['code'];
+        $code = $this->xmlObject->head->processing->result['code'] ?? null;
+        return (int)$code;
     }
 
     /**
